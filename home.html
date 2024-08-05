@@ -13,6 +13,73 @@
             margin: 0; 
             padding: 0; 
         } 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fde6e6; /* Light pink background */
+            color: #333; /* Dark text color */
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #f7a8a8; /* Light pink */
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px 15px;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #f27c7c; /* Darker pink on hover */
+            color: #fff;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h2 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #f27c7c; /* Darker pink */
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #333;
+        }
+        .hero a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #f27c7c; /* Darker pink */
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .hero a:hover {
+            background-color: #e06666; /* Even darker pink on hover */
+        }
         .container.content { 
             display: flex; 
             flex-direction: column; 
@@ -30,20 +97,6 @@
         .content p { 
             font-size: 1.2em; /* Increase font size for p */ 
             line-height: 1.6; /* Adjust line height */ 
-        } 
-        .login-signup { 
-            margin-top: 20px; /* Added margin for spacing */ 
-        } 
-        .login-signup a { 
-            text-decoration: none; 
-            color: #333; /* Dark text color */ 
-            padding: 10px 20px; /* Increased padding for login/signup */ 
-            border-radius: 4px; 
-            background-color: #f7a8a8; /* Light pink */ 
-            display: inline-block; 
-        } 
-        .login-signup a:hover { 
-            background-color: #f27c7c; /* Darker pink on hover */ 
         } 
         .services {
             text-align: center;
