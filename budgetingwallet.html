@@ -40,61 +40,56 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
+            text-align: left;
         }
         .wallet-name {
             font-size: 1.4em;
             font-weight: bold;
             color: #333;
-            margin-bottom: 10px;
+            flex: 1;
+        }
+        .wallet-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            text-align: right;
+            flex: 1;
         }
         .wallet-amount {
             font-size: 2em;
             color: #333;
-            margin-bottom: 10px;
         }
         .wallet-difference {
             font-size: 1.2em;
             color: #2e8b57; 
-            margin-bottom: 10px;
         }
-        .progress-bar-container {
-            width: 100%;
-            background-color: #e0e0e0;
+        .button-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
             border-radius: 8px;
-            overflow: hidden;
-            margin: 10px 0;
-            height: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            background-color: #ff6666; /* Apply the same color to both buttons */
         }
-        .progress-bar {
-            height: 100%;
-            background-color: #ff6666;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-        .section-divider {
-            margin: 30px 0;
-            border-top: 2px solid #f7a8a8;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
+        .button-container a:hover {
+            background-color: #cc3333; /* Apply the same hover color to both buttons */
         }
         @media (min-width: 768px) {
             .wallet {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-            }
-            .wallet-name, .wallet-amount, .wallet-difference {
-                text-align: left;
-            }
-            .wallet-amount {
-                font-size: 1.5em;
-            }
-            .wallet-difference {
-                font-size: 1em;
             }
         }
         @media (max-width: 600px) {
@@ -116,74 +111,66 @@
             <div class="wallet-header">Wallet Overview</div>
             <div class="wallet">
                 <div class="wallet-name">Housing</div>
-                <div class="wallet-amount" id="housing-amount">$100</div>
-                <div class="wallet-difference" id="housing-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="housing-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="housing-amount">$100</div>
+                    <div class="wallet-difference" id="housing-difference"></div>
                 </div>
             </div>
             <div class="wallet">
                 <div class="wallet-name">Transportation</div>
-                <div class="wallet-amount" id="transportation-amount">$100</div>
-                <div class="wallet-difference" id="transportation-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="transportation-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="transportation-amount">$100</div>
+                    <div class="wallet-difference" id="transportation-difference"></div>
                 </div>
             </div>
             <div class="wallet">
                 <div class="wallet-name">Food</div>
-                <div class="wallet-amount" id="food-amount">$100</div>
-                <div class="wallet-difference" id="food-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="food-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="food-amount">$100</div>
+                    <div class="wallet-difference" id="food-difference"></div>
                 </div>
             </div>
             <div class="wallet">
                 <div class="wallet-name">Entertainment</div>
-                <div class="wallet-amount" id="entertainment-amount">$100</div>
-                <div class="wallet-difference" id="entertainment-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="entertainment-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="entertainment-amount">$100</div>
+                    <div class="wallet-difference" id="entertainment-difference"></div>
                 </div>
             </div>
             <div class="wallet">
                 <div class="wallet-name">Utilities</div>
-                <div class="wallet-amount" id="utilities-amount">$100</div>
-                <div class="wallet-difference" id="utilities-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="utilities-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="utilities-amount">$100</div>
+                    <div class="wallet-difference" id="utilities-difference"></div>
                 </div>
             </div>
             <div class="wallet">
                 <div class="wallet-name">Others</div>
-                <div class="wallet-amount" id="others-amount">$100</div>
-                <div class="wallet-difference" id="others-difference">+ $0</div>
-                <div class="progress-bar-container">
-                    <div class="progress-bar" id="others-bar"></div>
+                <div class="wallet-details">
+                    <div class="wallet-amount" id="others-amount">$100</div>
+                    <div class="wallet-difference" id="others-difference"></div>
                 </div>
+            </div>
+            <div class="button-container">
+                <a href="wallet.html" class="return-wallet">Return to Wallet</a>
+                <a href="home.html" class="return-home">Return to Home</a>
             </div>
         </div>
     </div>
     <script>
         const wallets = [
-            {name: "housing", amount: 100},
-            {name: "transportation", amount: 100},
-            {name: "food", amount: 100},
-            {name: "entertainment", amount: 100},
+            {name: "housing", amount: 400},
+            {name: "transportation", amount: 200},
+            {name: "food", amount: 800},
+            {name: "entertainment", amount: 500},
             {name: "utilities", amount: 100},
             {name: "others", amount: 100}
         ];
 
         wallets.forEach(wallet => {
             const currentAmount = wallet.amount; 
-            const startAmount = 100;
-            const maxAmount = 200; 
-            const difference = currentAmount - startAmount;
-            const percentageSpent = (currentAmount / maxAmount) * 100;
-
             document.getElementById(`${wallet.name}-amount`).innerText = `$${currentAmount}`;
-            document.getElementById(`${wallet.name}-difference`).innerText = `+ $${difference}`;
-            document.getElementById(`${wallet.name}-bar`).style.width = `${percentageSpent}%`;
+            document.getElementById(`${wallet.name}-difference`).innerText = ''; // Removed the difference display
         });
     </script>
 </body>
