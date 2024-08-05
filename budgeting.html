@@ -228,7 +228,7 @@
         }
 
         function updateValue(id) {
-            const valueSpan = document.getElementById(${id}-value);
+            const valueSpan = document.getElementById(`${id}-value`);
             const slider = document.getElementById(id);
             valueSpan.textContent = slider.value;
             updateSpendingValues();
@@ -272,8 +272,6 @@
                     }]
                 };
                 updateChart(spendingData);
-            } else {
-                alert('Percentages must add up to 100%. Please adjust your values.');
             }
         }
 
@@ -328,14 +326,13 @@
 
             const total = housing + transportation + food + entertainment + utilities + other;
 
-            if (total !== 100) {
-                alert('Percentages must add up to 100%. Please adjust your values.');
-                return;
+            if (total === 100) {
+                saveSpendingData(month, totalAmount, housing, transportation, food, entertainment, utilities, other);
+                updateSpendingValues();
+            } else {
+                // You may add other error handling or feedback here if needed
+                console.log('Percentages must add up to 100%. Please adjust your values.');
             }
-
-            saveSpendingData(month, totalAmount, housing, transportation, food, entertainment, utilities, other);
-
-            updateSpendingValues();
         });
 
         updateChart(initialData);
