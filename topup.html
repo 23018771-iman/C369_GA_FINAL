@@ -61,12 +61,6 @@
         .form-section button:hover {
             background-color: #ee5b5b; 
         }
-        .form-section .topup-options {
-            margin-bottom: 20px;
-        }
-        .form-section .topup-options label {
-            margin-right: 10px;
-        }
         .num-pad-section {
             flex: 1;
             display: flex;
@@ -164,45 +158,43 @@
 </head>
 <body>
 
- <div class="container">
-     <div class="form-container">
-         <div class="form-section">
+<div class="container">
+    <div class="form-container">
+        <div class="form-section">
             <h2>Top Up</h2>
             <form id="topup-form">
                 <label for="wallet-select">Select Wallet:</label>
                 <select id="wallet-select" name="wallet">
-                     <option value="wallet1">Main Wallet</option>
+                    <option value="wallet1">Main Wallet</option>
                 </select>
 
                 <label for="from-wallet-select">Transfer From:</label>
                 <select id="from-wallet-select" name="from-wallet">
                     <option value="bank">Visa 2719</option>
-                    <option value="wallet">Main Wallet</option>
-                 </select>
+                    <option value="bank">Apple Pay</option>
+                </select>
 
                 <label for="amount-input">Enter Amount:</label>
                 <input type="number" id="amount-input" name="amount" min="0" step="any" required>
-                
-                </form>
-            </div>
+            </form>
+        </div>
 
-            <div class="num-pad-section">
-                <div class="num-pad">
-                    <button type="button" onclick="appendNumber(1)">1</button>
-                    <button type="button" onclick="appendNumber(2)">2</button>
-                    <button type="button" onclick="appendNumber(3)">3</button>
-                    <button type="button" onclick="appendNumber(4)">4</button>
-                    <button type="button" onclick="appendNumber(5)">5</button>
-                    <button type="button" onclick="appendNumber(6)">6</button>
-                    <button type="button" onclick="appendNumber(7)">7</button>
-                    <button type="button" onclick="appendNumber(8)">8</button>
-                    <button type="button" onclick="appendNumber(9)">9</button>
-                    <button type="button" onclick="appendNumber(0)">0</button>
-                </div>
-                <div class="slide-container" id="slide-container">
-                    <div class="slide-button" id="slide-button"></div>
-                    <span>Slide to Top-Up</span>
-                </div>
+        <div class="num-pad-section">
+            <div class="num-pad">
+                <button type="button" onclick="appendNumber(1)">1</button>
+                <button type="button" onclick="appendNumber(2)">2</button>
+                <button type="button" onclick="appendNumber(3)">3</button>
+                <button type="button" onclick="appendNumber(4)">4</button>
+                <button type="button" onclick="appendNumber(5)">5</button>
+                <button type="button" onclick="appendNumber(6)">6</button>
+                <button type="button" onclick="appendNumber(7)">7</button>
+                <button type="button" onclick="appendNumber(8)">8</button>
+                <button type="button" onclick="appendNumber(9)">9</button>
+                <button type="button" onclick="appendNumber(0)">0</button>
+            </div>
+            <div class="slide-container" id="slide-container">
+                <div class="slide-button" id="slide-button"></div>
+                <span>Slide to Top-Up</span>
             </div>
         </div>
     </div>
@@ -242,7 +234,7 @@
                     showPopupMessage(); 
                     setTimeout(() => {
                         window.location.href = 'wallet.html'; 
-                    }, 2000); /
+                    }, 2000); 
                 } else {
                     alert('Please enter a valid amount to top-up.');
                 }
