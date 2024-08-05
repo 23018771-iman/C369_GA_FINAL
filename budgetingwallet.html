@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Overview</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fde6e6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+        }
+        .wallet-container {
+            background-color: #f7a8a8;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        .wallet-header {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        .wallet {
+            background-color: #fff;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .wallet-name {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .wallet-amount {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .wallet-difference {
+            font-size: 1.2em;
+            color: #2e8b57; /* Dark green for positive difference */
+            margin-bottom: 10px;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px 0;
+            height: 12px;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #ff6666; /* Red for the bar */
+            width: 0%; /* Will be set dynamically */
+            transition: width 0.5s ease;
+        }
+        .section-divider {
+            margin: 30px 0;
+            border-top: 2px solid #f7a8a8;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .wallet {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .wallet-name, .wallet-amount, .wallet-difference {
+                text-align: left;
+            }
+            .wallet-amount {
+                font-size: 1.5em;
+            }
+            .wallet-difference {
+                font-size: 1em;
+            }
+        }
+        @media (max-width: 600px) {
+            .wallet-header {
+                font-size: 2em;
+            }
+            .wallet-amount {
+                font-size: 1.4em;
+            }
+            .wallet-difference {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wallet-container">
+            <div class="wallet-header">Wallet Overview</div>
+            <div class="wallet">
+                <div class="wallet-name">Housing</div>
+                <div class="wallet-amount" id="housing-amount">$100</div>
+                <div class="wallet-difference" id="housing-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="housing-bar"></div>
+                </div>
+            </div>
+            <div class="wallet">
+                <div class="wallet-name">Transportation</div>
+                <div class="wallet-amount" id="transportation-amount">$100</div>
+                <div class="wallet-difference" id="transportation-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="transportation-bar"></div>
+                </div>
+            </div>
+            <div class="wallet">
+                <div class="wallet-name">Food</div>
+                <div class="wallet-amount" id="food-amount">$100</div>
+                <div class="wallet-difference" id="food-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="food-bar"></div>
+                </div>
+            </div>
+            <div class="wallet">
+                <div class="wallet-name">Entertainment</div>
+                <div class="wallet-amount" id="entertainment-amount">$100</div>
+                <div class="wallet-difference" id="entertainment-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="entertainment-bar"></div>
+                </div>
+            </div>
+            <div class="wallet">
+                <div class="wallet-name">Utilities</div>
+                <div class="wallet-amount" id="utilities-amount">$100</div>
+                <div class="wallet-difference" id="utilities-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="utilities-bar"></div>
+                </div>
+            </div>
+            <div class="wallet">
+                <div class="wallet-name">Others</div>
+                <div class="wallet-amount" id="others-amount">$100</div>
+                <div class="wallet-difference" id="others-difference">+ $0</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="others-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const wallets = [
+            {name: "housing", amount: 100},
+            {name: "transportation", amount: 100},
+            {name: "food", amount: 100},
+            {name: "entertainment", amount: 100},
+            {name: "utilities", amount: 100},
+            {name: "others", amount: 100}
+        ];
+
+        wallets.forEach(wallet => {
+            const currentAmount = wallet.amount; // This would be dynamically fetched
+            const startAmount = 100;
+            const maxAmount = 200; // Example max amount for the progress bar
+            const difference = currentAmount - startAmount;
+            const percentageSpent = (currentAmount / maxAmount) * 100;
+
+            document.getElementById(`${wallet.name}-amount`).innerText = `$${currentAmount}`;
+            document.getElementById(`${wallet.name}-difference`).innerText = `+ $${difference}`;
+            document.getElementById(`${wallet.name}-bar`).style.width = `${percentageSpent}%`;
+        });
+    </script>
+</body>
+</html>

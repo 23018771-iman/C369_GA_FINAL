@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fde6e6; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px; 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px; 
+            text-align: center;
+            margin-bottom: 20px; 
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333; 
+            font-size: 24px;
+        }
+        .container form {
+            display: none;
+        }
+        .container form.active {
+            display: block;
+        }
+        .container label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333; 
+            font-size: 16px; 
+        }
+        .container input {
+            width: 100%;
+            padding: 15px; 
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; 
+        }
+        .container button {
+            width: 100%;
+            padding: 15px; 
+            background-color: #f7a8a8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px; 
+        }
+        .container button:hover {
+            background-color: #f27c7c; 
+        }
+        .toggle-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #f7a8a8; 
+            cursor: pointer;
+            font-size: 16px; 
+        }
+        .return-button {
+            background-color: #ff6666; 
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px; 
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            font-size: 16px; 
+        }
+        .return-button:hover {
+            background-color: #cc3333; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="form-title">Login</h2>
+        <form id="login-form" class="active">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="username" required>
+
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="signup-form">
+            <label for="signup-username">Username</label>
+            <input type="text" id="signup-username" name="username" required>
+
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" name="email" required>
+
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="toggle-link" onclick="toggleForms()">Don't have an account? Sign up</div>
+    </div>
+
+    <a href="home.html" class="return-button">Return to Home</a>
+
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const formTitle = document.getElementById('form-title');
+            const toggleLink = document.querySelector('.toggle-link');
+
+            if (loginForm.classList.contains('active')) {
+                loginForm.classList.remove('active');
+                signupForm.classList.add('active');
+                formTitle.textContent = 'Sign Up';
+                toggleLink.textContent = 'Already have an account? Login';
+            } else {
+                signupForm.classList.remove('active');
+                loginForm.classList.add('active');
+                formTitle.textContent = 'Login';
+                toggleLink.textContent = 'Don\'t have an account? Sign up';
+            }
+        }
+
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Account created');
+            window.location.href = 'login.html';
+        });
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            window.location.href = 'wallet.html';
+        });
+    </script>
+
+</body>
+</html>
