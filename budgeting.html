@@ -48,7 +48,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%; /* Full width */
+            width: 100%;
             max-width: 350px;
             text-align: left;
             position: absolute;
@@ -68,6 +68,7 @@
             margin-bottom: 5px;
             font-size: 14px;
         }
+        .goals-summary input[type="number"],
         .goals-summary input[type="range"] {
             width: 100%;
         }
@@ -115,6 +116,10 @@
             <h2>Your Custom Spending Summary</h2>
 
             <form id="spendingForm">
+                <div class="form-group">
+                    <label for="totalAmount">Total Amount ($)</label>
+                    <input type="number" id="totalAmount" name="totalAmount" min="0" step="any" oninput="updateSpendingValues()" required>
+                </div>
                 <div class="form-group">
                     <label for="housing">Housing (%)</label>
                     <input type="range" id="housing" name="housing" min="0" max="100" step="1" oninput="updateValue('housing')" required>
@@ -185,8 +190,8 @@
                     '#f27c7c',
                     '#ee5b5b',
                     '#ff9999',
-                    '#ff6666', 
-                    '#ff3333' 
+                    '#ff6666',
+                    '#ff3333'
                 ],
                 borderWidth: 1
             }]
@@ -212,7 +217,7 @@
                             tooltip: {
                                 callbacks: {
                                     label: function(tooltipItem) {
-                                        return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(1) + '%';
+                                        return tooltipItem.label + ': ' + tooltipItem.raw.toFixed(2) + '%';
                                     }
                                 }
                             }
@@ -223,14 +228,59 @@
         }
 
         function updateValue(id) {
-            const valueSpan = document.getElementById(`${id}-value`);
+            const valueSpan = document.getElementById(${id}-value);
             const slider = document.getElementById(id);
             valueSpan.textContent = slider.value;
+            updateSpendingValues();
         }
 
-        function saveSpendingData(month, housing, transportation, food, entertainment, utilities, other) {
+        function updateSpendingValues() {
+            const totalAmount = parseFloat(document.getElementById('totalAmount').value);
+            if (isNaN(totalAmount) || totalAmount <= 0) return;
+
+            const housing = parseFloat(document.getElementById('housing').value);
+            const transportation = parseFloat(document.getElementById('transportation').value);
+            const food = parseFloat(document.getElementById('food').value);
+            const entertainment = parseFloat(document.getElementById('entertainment').value);
+            const utilities = parseFloat(document.getElementById('utilities').value);
+            const other = parseFloat(document.getElementById('other').value);
+
+            const totalPercentage = housing + transportation + food + entertainment + utilities + other;
+
+            if (totalPercentage === 100) {
+                const spendingData = {
+                    labels: ['Housing', 'Transportation', 'Food', 'Entertainment', 'Utilities', 'Other'],
+                    datasets: [{
+                        label: 'Spending Breakdown',
+                        data: [
+                            (housing / 100) * totalAmount,
+                            (transportation / 100) * totalAmount,
+                            (food / 100) * totalAmount,
+                            (entertainment / 100) * totalAmount,
+                            (utilities / 100) * totalAmount,
+                            (other / 100) * totalAmount
+                        ],
+                        backgroundColor: [
+                            '#f7a8a8',
+                            '#f27c7c',
+                            '#ee5b5b',
+                            '#ff9999',
+                            '#ff6666',
+                            '#ff3333'
+                        ],
+                        borderWidth: 1
+                    }]
+                };
+                updateChart(spendingData);
+            } else {
+                alert('Percentages must add up to 100%. Please adjust your values.');
+            }
+        }
+
+        function saveSpendingData(month, totalAmount, housing, transportation, food, entertainment, utilities, other) {
             const spendingData = {
                 month: month,
+                totalAmount: totalAmount,
                 housing: housing,
                 transportation: transportation,
                 food: food,
@@ -246,6 +296,7 @@
             const spendingData = localStorage.getItem(month);
             if (spendingData) {
                 const data = JSON.parse(spendingData);
+                document.getElementById('totalAmount').value = data.totalAmount;
                 document.getElementById('housing').value = data.housing;
                 document.getElementById('transportation').value = data.transportation;
                 document.getElementById('food').value = data.food;
@@ -260,30 +311,14 @@
                 updateValue('utilities');
                 updateValue('other');
 
-                const updatedData = {
-                    labels: ['Housing', 'Transportation', 'Food', 'Entertainment', 'Utilities', 'Other'],
-                    datasets: [{
-                        label: 'Spending Breakdown',
-                        data: [data.housing, data.transportation, data.food, data.entertainment, data.utilities, data.other],
-                        backgroundColor: [
-                            '#f7a8a8',
-                            '#f27c7c',
-                            '#ee5b5b',
-                            '#ff9999',
-                            '#ff6666',
-                            '#ff3333' 
-                        ],
-                        borderWidth: 1
-                    }]
-                };
-
-                updateChart(updatedData);
+                updateSpendingValues();
             }
         }
 
         document.getElementById('spendingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const month = document.getElementById('month').value;
+            const totalAmount = parseFloat(document.getElementById('totalAmount').value);
             const housing = parseInt(document.getElementById('housing').value);
             const transportation = parseInt(document.getElementById('transportation').value);
             const food = parseInt(document.getElementById('food').value);
@@ -292,32 +327,15 @@
             const other = parseInt(document.getElementById('other').value);
 
             const total = housing + transportation + food + entertainment + utilities + other;
-            
+
             if (total !== 100) {
                 alert('Percentages must add up to 100%. Please adjust your values.');
                 return;
             }
 
-            saveSpendingData(month, housing, transportation, food, entertainment, utilities, other);
+            saveSpendingData(month, totalAmount, housing, transportation, food, entertainment, utilities, other);
 
-            const updatedData = {
-                labels: ['Housing', 'Transportation', 'Food', 'Entertainment', 'Utilities', 'Other'],
-                datasets: [{
-                    label: 'Spending Breakdown',
-                    data: [housing, transportation, food, entertainment, utilities, other],
-                    backgroundColor: [
-                        '#f7a8a8', 
-                        '#f27c7c', 
-                        '#ee5b5b',
-                        '#ff9999', 
-                        '#ff6666', 
-                        '#ff3333'  
-                    ],
-                    borderWidth: 1
-                }]
-            };
-
-            updateChart(updatedData);
+            updateSpendingValues();
         });
 
         updateChart(initialData);

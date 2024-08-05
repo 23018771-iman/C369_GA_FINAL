@@ -18,13 +18,15 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 20px;
         }
         .form-container {
             background-color: #f7a8a8; 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 1200px;
+            width: 100%;
+            max-width: 1200px;
             display: flex;
             flex-direction: row; 
             justify-content: space-between;
@@ -154,6 +156,19 @@
             margin: 0;
             font-size: 1.2em;
             color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .form-section {
+                margin: 10px 0;
+            }
+            .num-pad {
+                justify-content: center;
+            }
         }
     </style>
 </head>
