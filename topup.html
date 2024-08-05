@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Tools - Financefriend</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fde6e6; /* Light pink background */
-            color: #333; /* Dark text color */
+            background-color: #fde6e6; 
+            color: #333; 
             margin: 0;
             padding: 0;
         }
@@ -20,14 +19,14 @@
             height: 100vh;
         }
         .form-container {
-            background-color: #f7a8a8; /* Darker pink background */
+            background-color: #f7a8a8; 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 1200px; /* Increased width for more horizontal layout */
+            width: 1200px;
             display: flex;
-            flex-direction: row; /* Horizontal layout */
-            justify-content: space-between; /* Space between elements */
+            flex-direction: row; 
+            justify-content: space-between;
             align-items: center;
         }
         .form-section {
@@ -53,14 +52,14 @@
         .form-section button {
             width: 100%;
             padding: 10px;
-            background-color: #f27c7c; /* Different shade of pink */
+            background-color: #f27c7c; 
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         .form-section button:hover {
-            background-color: #ee5b5b; /* Darker shade of pink on hover */
+            background-color: #ee5b5b; 
         }
         .form-section .topup-options {
             margin-bottom: 20px;
@@ -86,7 +85,7 @@
             width: 30%;
             padding: 20px;
             margin-bottom: 10px;
-            background-color: #f27c7c; /* Same shade of pink */
+            background-color: #f27c7c; 
             color: white;
             border: none;
             border-radius: 4px;
@@ -94,14 +93,14 @@
             cursor: pointer;
         }
         .num-pad button:hover {
-            background-color: #ee5b5b; /* Darker shade of pink on hover */
+            background-color: #ee5b5b; 
         }
         .slide-container {
             width: 100%;
             max-width: 300px;
             height: 50px;
-            background-color: #333; /* Dark background */
-            color: white; /* White text */
+            background-color: #333; 
+            color: white; 
             border: none;
             border-radius: 4px;
             position: relative;
@@ -122,14 +121,14 @@
             cursor: pointer;
         }
         .slide-container:hover .slide-button {
-            background-color: #ee5b5b; /* Darker pink on hover */
+            background-color: #ee5b5b; 
         }
         .slide-container span {
             position: absolute;
             right: 10px;
         }
         .return-button {
-            background-color: #ff6666; /* Red color */
+            background-color: #ff6666; 
             color: white;
             border: none;
             border-radius: 4px;
@@ -141,7 +140,7 @@
             text-align: center;
         }
         .return-button:hover {
-            background-color: #cc3333; /* Darker red on hover */
+            background-color: #cc3333; 
         }
         .popup-message {
             position: fixed;
@@ -152,7 +151,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden by default */
+            display: none;
             z-index: 1000;
             text-align: center;
         }
@@ -207,7 +206,7 @@
             </div>
         </div>
     </div>
-    <a href="index.html" class="return-button">Return to Main Page</a>
+    <a href="wallet.html" class="return-button">Return to Wallet</a>
 </div>
 
 <div class="popup-message" id="popup-message">
@@ -229,21 +228,21 @@
     slideButton.addEventListener('mousedown', (e) => {
         isSliding = true;
         startX = e.clientX - slideButton.offsetLeft;
-        slideButton.style.transition = 'none'; // Disable transition during drag
+        slideButton.style.transition = 'none';
     });
 
     document.addEventListener('mouseup', () => {
         if (isSliding) {
             isSliding = false;
-            slideButton.style.transition = 'left 0.3s'; // Re-enable transition after drag
+            slideButton.style.transition = 'left 0.3s'; 
             if (slideButton.offsetLeft + slideButton.offsetWidth >= slideContainer.offsetWidth) {
                 const amount = amountInput.value;
                 if (amount > 0) {
-                    localStorage.setItem('topUpAmount', amount); // Store the top-up amount in local storage
-                    showPopupMessage(); // Show popup message
+                    localStorage.setItem('topUpAmount', amount);
+                    showPopupMessage(); 
                     setTimeout(() => {
-                        window.location.href = 'wallet.html'; // Redirect to wallet page
-                    }, 2000); // Redirect after 2 seconds
+                        window.location.href = 'wallet.html'; 
+                    }, 2000); /
                 } else {
                     alert('Please enter a valid amount to top-up.');
                 }

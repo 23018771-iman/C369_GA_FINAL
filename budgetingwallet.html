@@ -57,7 +57,7 @@
         }
         .wallet-difference {
             font-size: 1.2em;
-            color: #2e8b57; /* Dark green for positive difference */
+            color: #2e8b57; 
             margin-bottom: 10px;
         }
         .progress-bar-container {
@@ -70,8 +70,8 @@
         }
         .progress-bar {
             height: 100%;
-            background-color: #ff6666; /* Red for the bar */
-            width: 0%; /* Will be set dynamically */
+            background-color: #ff6666;
+            width: 0%;
             transition: width 0.5s ease;
         }
         .section-divider {
@@ -175,9 +175,9 @@
         ];
 
         wallets.forEach(wallet => {
-            const currentAmount = wallet.amount; // This would be dynamically fetched
+            const currentAmount = wallet.amount; 
             const startAmount = 100;
-            const maxAmount = 200; // Example max amount for the progress bar
+            const maxAmount = 200; 
             const difference = currentAmount - startAmount;
             const percentageSpent = (currentAmount / maxAmount) * 100;
 

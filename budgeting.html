@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spending Goals - Financefriend</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #fde6e6; /* Light pink background */
-            color: #333; /* Dark text color */
+            background-color: #fde6e6;
+            color: #333;
             margin: 0;
             padding: 0;
         }
         .container {
             display: flex;
-            flex-direction: column; /* Stack items vertically */
+            flex-direction: column;
             min-height: 100vh;
             padding: 20px;
             box-sizing: border-box;
@@ -26,22 +25,22 @@
             margin-bottom: 10px;
             width: 100%;
             display: flex;
-            align-items: center; /* Align items horizontally */
+            align-items: center;
         }
         .caption label {
-            font-size: 18px; /* Increase font size */
-            margin-right: 10px; /* Add space between label and select */
+            font-size: 18px;
+            margin-right: 10px;
         }
         .caption select {
-            font-size: 18px; /* Increase font size */
-            padding: 10px; /* Add padding */
+            font-size: 18px;
+            padding: 10px; 
             border: 1px solid #ccc;
             border-radius: 4px;
             background-color: #fff;
         }
         .chart-container {
-            width: 100%; /* Full width */
-            max-width: 600px; /* Limit maximum width */
+            width: 100%;
+            max-width: 600px;
             margin-bottom: 20px;
         }
         .goals-summary {
@@ -50,15 +49,15 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 100%; /* Full width */
-            max-width: 350px; /* Limit maximum width */
-            text-align: left; /* Align text to the left */
+            max-width: 350px;
+            text-align: left;
             position: absolute;
             top: 20px;
             right: 20px;
         }
         .goals-summary h2 {
-            width: 100%; /* Full width */
-            font-size: 18px; /* Decreased font size */
+            width: 100%;
+            font-size: 18px;
             margin-bottom: 10px;
         }
         .goals-summary .form-group {
@@ -67,7 +66,7 @@
         .goals-summary label {
             display: block;
             margin-bottom: 5px;
-            font-size: 14px; /* Decreased font size */
+            font-size: 14px;
         }
         .goals-summary input[type="range"] {
             width: 100%;
@@ -76,12 +75,12 @@
             display: block;
             text-align: right;
             font-weight: bold;
-            font-size: 14px; /* Decreased font size */
+            font-size: 14px;
         }
         .goals-summary button {
             width: 100%;
             padding: 10px;
-            background-color: #f7a8a8; /* Light pink */
+            background-color: #f7a8a8;
             color: white;
             border: none;
             border-radius: 4px;
@@ -90,10 +89,10 @@
             margin-top: 10px;
         }
         .goals-summary button:hover {
-            background-color: #f27c7c; /* Darker pink on hover */
+            background-color: #f27c7c;
         }
         .return-button {
-            background-color: #ff6666; /* Red color */
+            background-color: #ff6666;
             color: white;
             border: none;
             border-radius: 4px;
@@ -105,7 +104,7 @@
             text-align: center;
         }
         .return-button:hover {
-            background-color: #cc3333; /* Darker red on hover */
+            background-color: #cc3333;
         }
     </style>
 </head>
@@ -171,24 +170,23 @@
         <div class="chart-container">
             <canvas id="myPieChart"></canvas>
         </div>
-        <a href="mainpage.html" class="return-button">Return to Main Page</a>
+        <a href="home.html" class="return-button">Return to Home Page</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Initial data for the pie chart
         const initialData = {
             labels: ['Housing', 'Transportation', 'Food', 'Entertainment', 'Utilities', 'Other'],
             datasets: [{
                 label: 'Spending Breakdown',
                 data: [30, 20, 15, 10, 10, 15],
                 backgroundColor: [
-                    '#f7a8a8', // Light pink
-                    '#f27c7c', // Different shade of pink
-                    '#ee5b5b', // Darker shade of pink
-                    '#ff9999', // Lighter pink
-                    '#ff6666', // Medium pink
-                    '#ff3333'  // Darker pink
+                    '#f7a8a8',
+                    '#f27c7c',
+                    '#ee5b5b',
+                    '#ff9999',
+                    '#ff6666', 
+                    '#ff3333' 
                 ],
                 borderWidth: 1
             }]
@@ -196,7 +194,6 @@
 
         let myPieChart;
 
-        // Function to create or update the pie chart
         function updateChart(data) {
             const ctx = document.getElementById('myPieChart').getContext('2d');
             if (myPieChart) {
@@ -210,7 +207,7 @@
                         responsive: true,
                         plugins: {
                             legend: {
-                                position: 'right', // Positioning legend to the right
+                                position: 'right',
                             },
                             tooltip: {
                                 callbacks: {
@@ -225,14 +222,12 @@
             }
         }
 
-        // Function to update the displayed value of the sliders
         function updateValue(id) {
             const valueSpan = document.getElementById(`${id}-value`);
             const slider = document.getElementById(id);
             valueSpan.textContent = slider.value;
         }
 
-        // Function to save spending data to localStorage
         function saveSpendingData(month, housing, transportation, food, entertainment, utilities, other) {
             const spendingData = {
                 month: month,
@@ -244,11 +239,9 @@
                 other: other
             };
 
-            // Convert object to JSON and save to localStorage
             localStorage.setItem(month, JSON.stringify(spendingData));
         }
 
-        // Function to load spending data from localStorage
         function loadSpendingData(month) {
             const spendingData = localStorage.getItem(month);
             if (spendingData) {
@@ -273,12 +266,12 @@
                         label: 'Spending Breakdown',
                         data: [data.housing, data.transportation, data.food, data.entertainment, data.utilities, data.other],
                         backgroundColor: [
-                            '#f7a8a8', // Light pink
-                            '#f27c7c', // Different shade of pink
-                            '#ee5b5b', // Darker shade of pink
-                            '#ff9999', // Lighter pink
-                            '#ff6666', // Medium pink
-                            '#ff3333'  // Darker pink
+                            '#f7a8a8',
+                            '#f27c7c',
+                            '#ee5b5b',
+                            '#ff9999',
+                            '#ff6666',
+                            '#ff3333' 
                         ],
                         borderWidth: 1
                     }]
@@ -288,7 +281,6 @@
             }
         }
 
-        // Handling form submission to update the chart
         document.getElementById('spendingForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const month = document.getElementById('month').value;
@@ -301,13 +293,11 @@
 
             const total = housing + transportation + food + entertainment + utilities + other;
             
-            // Ensure percentages sum up to 100%
             if (total !== 100) {
                 alert('Percentages must add up to 100%. Please adjust your values.');
                 return;
             }
 
-            // Save the spending data to localStorage
             saveSpendingData(month, housing, transportation, food, entertainment, utilities, other);
 
             const updatedData = {
@@ -316,25 +306,22 @@
                     label: 'Spending Breakdown',
                     data: [housing, transportation, food, entertainment, utilities, other],
                     backgroundColor: [
-                        '#f7a8a8', // Light pink
-                        '#f27c7c', // Different shade of pink
-                        '#ee5b5b', // Darker shade of pink
-                        '#ff9999', // Lighter pink
-                        '#ff6666', // Medium pink
-                        '#ff3333'  // Darker pink
+                        '#f7a8a8', 
+                        '#f27c7c', 
+                        '#ee5b5b',
+                        '#ff9999', 
+                        '#ff6666', 
+                        '#ff3333'  
                     ],
                     borderWidth: 1
                 }]
             };
 
-            // Update the chart with new data
             updateChart(updatedData);
         });
 
-        // Initial creation of the pie chart
         updateChart(initialData);
 
-        // Load spending data for the initial month (January for example)
         const initialMonth = document.getElementById('month').value;
         loadSpendingData(initialMonth);
     </script>
