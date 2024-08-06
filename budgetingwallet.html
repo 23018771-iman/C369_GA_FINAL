@@ -80,10 +80,10 @@
             color: #fff;
             text-align: center;
             transition: background-color 0.3s ease;
-            background-color: #ff6666; /* Apply the same color to both buttons */
+            background-color: #ff6666; 
         }
         .button-container a:hover {
-            background-color: #cc3333; /* Apply the same hover color to both buttons */
+            background-color: #cc3333; 
         }
         @media (min-width: 768px) {
             .wallet {
@@ -170,7 +170,7 @@
         wallets.forEach(wallet => {
             const currentAmount = wallet.amount; 
             document.getElementById(`${wallet.name}-amount`).innerText = `$${currentAmount}`;
-            document.getElementById(`${wallet.name}-difference`).innerText = ''; // Removed the difference display
+            document.getElementById(`${wallet.name}-difference`).innerText = ''; 
         });
     </script>
 </body>
